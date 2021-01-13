@@ -9,13 +9,13 @@ from paho.mqtt.client import MQTT_ERR_SUCCESS
 
 BROKER = 'iot.fr-par.scw.cloud'
 BROKER_PORT = 8883
-device_id = '68dfa3da-9351-4f6b-aa71-a7d5efb0912f'
+device_id = '2bd04a78-1ff8-4f2e-b607-b48d457fe228'
 
 ca_cert = 'certificates/iot-hub-ca.pem'
-device_cert = 'certificates/light-sensor-1-crt.pem'
-device_key = 'certificates/light-sensor-1-key.pem'
+device_cert = 'certificates/temperature-sensor-1-crt.pem'
+device_key = 'certificates/temperature-sensor-1-key.pem'
 
-topic = "lights/sensors"
+topic = "temp/sensors"
 
 retain_messages = False
 
@@ -46,16 +46,16 @@ def mqtt_connect() -> mqtt_client:
 
 def publish(client: mqtt_client):
     while True:
-        luminosity = str(randint(0, 100))
+        temperature = str(randint(0, 100))
         payload = {
-            'maker': 'maker1',
-            'model': 'model1',
-            'serial_number': 'light-sensor-1',
-            'luminosity': luminosity
+            'maker': 'maker2',
+            'model': 'model2',
+            'serial_number': 'temperature-1',
+            'temp_in_deg_c': temperature
         }
         result = client.publish(topic, json.dumps(payload), retain=retain_messages)
         if result.rc == MQTT_ERR_SUCCESS:
-            print("Pushed {} to topic: {}".format(luminosity, topic))
+            print("Pushed {} to topic: {}".format(temperature, topic))
         sleep(3)
 
 def run():

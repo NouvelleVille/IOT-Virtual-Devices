@@ -49,7 +49,9 @@ def publish(client: mqtt_client):
     while True:
         luminosity = str(randint(0, 100))
         payload = {
-            'device': 'light-sensor-2',
+            'maker': 'maker1',
+            'model': 'model1',
+            'serial_number': 'light-sensor-2',
             'luminosity': luminosity
         }
         result = client.publish(topic, json.dumps(payload), retain=retain_messages)
