@@ -31,6 +31,7 @@ def mqtt_connect() -> mqtt_client:
         print("Disconnect form MQTT Broker")
 
 
+
     client = mqtt_client.Client(device_id)
     client.tls_set(
         ca_certs=ca_cert,
@@ -48,7 +49,7 @@ def publish(client: mqtt_client):
     while True:
         luminosity = str(randint(0, 100))
         payload = {
-            'device': 'light-sensor-1',
+            'device': 'light-sensor-2',
             'luminosity': luminosity
         }
         result = client.publish(topic, json.dumps(payload), retain=retain_messages)
