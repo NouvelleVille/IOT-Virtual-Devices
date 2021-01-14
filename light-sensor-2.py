@@ -32,7 +32,8 @@ def mqtt_connect() -> mqtt_client:
 
 
 
-    client = mqtt_client.Client(device_id)
+    client = mqtt_client.Client()
+    client.username_pw_set(device_id)
     client.tls_set(
         ca_certs=ca_cert,
         certfile=device_cert,

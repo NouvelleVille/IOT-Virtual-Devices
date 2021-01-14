@@ -31,7 +31,7 @@ def mqtt_connect() -> mqtt_client:
         print("Disconnect form MQTT Broker")
 
 
-    client = mqtt_client.Client(device_id)
+    client = mqtt_client.Client(device_id, clean_session=True)
     client.tls_set(
         ca_certs=ca_cert,
         certfile=device_cert,
